@@ -1,10 +1,20 @@
-# Foobar
+# Target Web Scraping Example
 
-Foobar is a Python library for dealing with word pluralization.
+Example of the use of libraries to obtain data through Web Scraping, for this exercise we mainly use Selenium to be able to interact with browsing and the web page.
 
-## Installation
+## Scraped Data
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+* Price
+* Description
+* Specifications
+* Highlights
+* Questions
+* Images urls
+* Title
+
+## Required Libraries
+* Selenium == 4.1.0
+* webdriver_manager == 3.5.2
 
 ```bash
 pip install foobar

@@ -12,24 +12,26 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-class TargetWebScrapping:
+class TargetWebScraping:
     """Class to get data from Target page"""
     def __init__(self):
         driver = None
         data = None
 
     def _get_answers(self, element):
+        """Function designed to obtain the answers to the questions asked in each item for sale."""
         return [answer.text for answer in element.find_elements(By.XPATH, './/span[@data-test="answerText"]')]
     
     def define_driver(self):
+        """Function designed for the initialization of the Browser and the webdriver."""
         webdriver_service = Service(ChromeDriverManager().install())
 
-        options = webdriver.ChromeOptions()
-        # options.add_argument('--headless')
+        options = webdriver.ChromeOptions() # If options are needed, they would be added here
 
         self.driver = webdriver.Chrome(options = options, service = webdriver_service)
 
     def get_data(self, url):
+        """Main function in charge of obtaining all the required data."""
         self.driver.get(url)
         delay = 10
         try:
@@ -100,10 +102,12 @@ class TargetWebScrapping:
             questions_list.append((question_data[0].text, list_answers))
         self.data['questions'] = questions_list
     
-    def close_driver(self):
+    def final_steps(self):
+        """Function in charge of closing the browser, in the same way if it is necessary final processes, they can be executed here"""
         self.driver = self.driver.close()
     
     def print_data(self):
+        """Function responsible for printing the data obtained on the screen."""
         for par in self.data:
             print(par)
             print(self.data[par])
@@ -111,17 +115,18 @@ class TargetWebScrapping:
 
 if __name__ == '__main__':
     url = 'https://www.target.com/p/apple-iphone-13-pro-max/-/A-84616123?preselect=84240109#lnk=sametab'
-    target = TargetWebScrapping()
 
-    for i in range(100):
-        # Inicializate driver
-        target.define_driver()
+    # Instance the class
+    target = TargetWebScraping()
 
-        # Get data
-        target.get_data(url)
+    # Inicializate browser and webdriver with the options
+    target.define_driver()
 
-        # Close Browser
-        target.close_driver()
+    # Function designed for data collection
+    target.get_data(url)
 
-        # Print all data
-        target.print_data()
+    # Close Browser
+    target.close_driver()
+
+    # Print all data
+    target.print_data()
