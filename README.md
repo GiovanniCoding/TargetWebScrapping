@@ -4,8 +4,12 @@ Example of the use of libraries to obtain data through Web Scraping, for this ex
 
 ## Scraped Data
 
+The solution is saved in a dictionary for each of the requested fields.
+
 * Price
+    * To obtain the price, regular expressions were used to clean it and keep only the numerical value.
 * Description
+    * The article description was obtained as plain text.
 * Specifications
 * Highlights
 * Questions
